@@ -2,7 +2,9 @@ package com.oxthink.web3.swap;
 
 import com.oxthink.constant.RouterInfo;
 import com.oxthink.constant.TokenInfo;
-import lombok.Getter;
+import com.oxthink.tool.StringUtil;
+import com.oxthink.web3.PairUtil;
+import com.oxthink.web3.Web3jUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.web3j.abi.TypeReference;
 import org.web3j.abi.datatypes.Address;
@@ -11,9 +13,6 @@ import org.web3j.abi.datatypes.DynamicArray;
 import org.web3j.abi.datatypes.Type;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.utils.Convert;
-import com.oxthink.tool.StringUtil;
-import com.oxthink.web3.PairUtil;
-import com.oxthink.web3.Web3jUtil;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -401,7 +400,7 @@ public class RouterUtil {
      * @throws Exception 与节点交互失败
      */
     public String approve(String tokenAddress) throws Exception {
-        return web3.approve(tokenAddress, routerInfo.getRouterAddress());
+        return web3.approveInfinite(tokenAddress, routerInfo.getRouterAddress());
     }
 
     /**

@@ -6,6 +6,7 @@ import io.github.novacrypto.bip39.SeedCalculator;
 import io.github.novacrypto.bip39.Words;
 import io.github.novacrypto.bip39.wordlists.English;
 import io.github.novacrypto.hashing.Sha256;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.bitcoinj.crypto.MnemonicCode;
 import org.bitcoinj.crypto.MnemonicException;
@@ -40,14 +41,17 @@ public class Web3jUtil {
     /**
      * provide对象
      */
+    @Getter
     private final Web3j web3;
     /**
      * 凭证对象
      */
+    @Getter
     private Credentials credentials;
     /**
      * 操作的账户
      */
+    @Getter
     private String ownerAddress;
 
     /**
@@ -71,14 +75,6 @@ public class Web3jUtil {
      * 关联的网络信息
      */
     private ChainInfo chainInfo;
-
-    public Web3j getWeb3() {
-        return web3;
-    }
-
-    public Credentials getCredentials() {
-        return credentials;
-    }
 
     /**
      * 初始化Web3j变量和凭证
@@ -491,15 +487,6 @@ public class Web3jUtil {
     }
 
     /**
-     * 获取owner地址
-     *
-     * @return web3对象维护的地址
-     */
-    public String getOwnerAddress() {
-        return ownerAddress;
-    }
-
-    /**
      * 读取合约状态
      *
      * @param contractAddress 合约地址
@@ -530,7 +517,7 @@ public class Web3jUtil {
      * @return 交易hash
      * @throws Exception 与节点交互失败
      */
-    public String approve(String contractAddress, String spender) throws Exception {
+    public String approveInfinite(String contractAddress, String spender) throws Exception {
         // 授权最大数量
         List input = Arrays.asList(new Address(spender)
                 , new Uint256(new BigInteger("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", 16)));
